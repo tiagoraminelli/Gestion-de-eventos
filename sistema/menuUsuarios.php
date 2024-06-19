@@ -107,8 +107,8 @@ $totalPaginas = ceil($totalUsuarios / $porPagina);
             
             <td>
                 <button onclick="usuarioEliminar(<?=$subArreglo['id'];?>)">eliminar</button>
-                <button onclick="usuarioEditar(<?=$subArreglo['id'];?>)">editar</button>
-                <button onclick="usuarioVer(<?=$subArreglo['id'];?>)">ver</button>  
+                <button >editar</button>
+                <button >ver</button>  
             </tr>
 
 
@@ -192,12 +192,12 @@ $(document).ready(function() {
   });
 });
 
-funtion usuarioEliminar(id){
+function usuarioEliminar(id){
     // Crear objeto con el ID del disertante a eliminar
     let parametros = { "inputIdUsuario": id };
 
     if (confirm("¿Estás seguro de eliminar este usuario?")) {
-        $.post('./funciones/usuarioElinar.php', parametros, function(funcion) {
+        $.post('./funciones/usuarioEliminar.php', parametros, function(funcion) {
             $('#mensaje').html('<div class="alert alert-success" role="alert">¡Usuario eliminado exitosamente!</div>'); 
            cargarContenido(); 
         }, "json");
