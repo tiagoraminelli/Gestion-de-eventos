@@ -23,7 +23,7 @@ if(!empty($filtros)){ //preguntamos si es diferente de vacio
         ['email'];
         ['password'];
  */
-    if(isset($filtros['id'])){
+        if(isset($filtros['id'])){
 
         $sql.=" AND id = ".$filtros['id'];  // el .=  es una concatenacion AGREGADA que usaremos para concatenar valores a la cadena
         //die("entro"); ESTO ESTA POR LAS DUDAS PARA VER SI ENTRA
@@ -33,6 +33,7 @@ if(!empty($filtros)){ //preguntamos si es diferente de vacio
         $sql.=" AND nombre LIKE '%".$filtros['nombre']."%'";  // el .=  es una concatenacion AGREGADA que usaremos para concatenar valores a la cadena
     
         }
+        
         if(isset($filtros['apellidos'])){
         $sql.=" AND apellido LIKE '%".$filtros['apellidos']."%'";  // el .=  es una concatenacion AGREGADA que usaremos para concatenar valores a la cadena
     

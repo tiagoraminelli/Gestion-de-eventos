@@ -12,7 +12,6 @@ $arregloUsuarios = $d->getUsuarioFilter();
 $contador = 0;
 $numeral = 0;
 
-
 // Definimos la cantidad de registros por página
 $porPagina = 10;
 
@@ -21,19 +20,12 @@ $paginaActual = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 
 // Calculamos el offset para la consulta según la página actual
 $offset = ($paginaActual) * $porPagina;
-
 // Llamamos al método para obtener los usuarios con paginación
 $arregloUsuarios = $d->getUsuariosPaginacion($porPagina, $offset);
-
 // Obtenemos el total de usuarios para calcular el número total de páginas
 $aregloCantidad = $d->getCantidad();
 $totalUsuarios = $aregloCantidad['cantidad']; 
-
-
 $totalPaginas = ceil($totalUsuarios / $porPagina);
-
-
-
 
 ?>
 
