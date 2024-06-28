@@ -3,7 +3,7 @@ set_include_path("../modelo");
 require 'DisertanteFilter.php'; 
 //creamos al DisertanteFilter
 $d = new DisertanteFilter();
-$array_disertante = $d->getDisertantes();
+$datosDisertantes= $d->getDisertantes();
 
               
 
@@ -37,10 +37,16 @@ $array_disertante = $d->getDisertantes();
 </nav>
 <!-- nav -->
 
-
-<button class="btn-block btn-primary" onclick="disertanteNuevo()">nuevo</button> 
+<button type="button" id="btnExportar" class="btn btn-primary">Exportar Disertantes</button>
+<button class="btn btn-primary" onclick="disertanteNuevo()">nuevo</button> 
+<button type="button" id="btnEliminarExportar" class="btn btn-primary">eliminar Importacion </button>
 <!-- areaTrabajo -->
 <section class="bg-slate-200 mx-auto text-slate-500" id="areaTrabajo">
+
+<!-- Botón para exportar -->
+
+ 
+
 
 
 
@@ -82,30 +88,23 @@ $array_disertante = $d->getDisertantes();
 
 <script > //EMPAZAMOS EL SCRIP A MANO PARA MOVERLO DESPUES
 //creamos funciones globales;
-let perpage;
-let page;
+
 //creamos la funcion AJAX
 $(document).ready(function(){
-    cargarContenido(1);
+    cargarContenido();
 })
 
-function cargarContenido(page){
+function cargarContenido(){
     
-    let param = {"page":page,"perpage":perpage};
-    $.post("./funciones/disertanteListar.php",param,function(listado){
+
+    $.post("./funciones/disertanteListar.php",function(listado){
         $('#areaTrabajo').html(listado);
     });
 
     
 }
 
- // Función para cambiar de página
- function cambiarPagina(pagina) {
-        var url = './menuDisertante.php?page=' + pagina;
-        window.location.href = url;
-        $('#inputFiltroPage').val(pagina); // Actualiza el valor del input hidden 'page'
-        $('#formFiltros').submit(); // Envía el formulario con el nuevo valor de página
-    }
+
 
 
 function disertanteNuevo(){
@@ -116,6 +115,22 @@ function disertanteNuevo(){
     });
     
 }
+
+
+$('#btnExportar').click(function() {
+    $.post('../export/export.php', function(data) {
+        // Procesar la respuesta JSON
+        let mensaje = JSON.parse(data);
+        if (mensaje.tipo === 'exito') {
+            // Mostrar un mensaje de alerta
+            alert(mensaje.texto);
+        } else {
+            // Manejar otros tipos de respuesta si es necesario
+            alert('Hubo un problema al exportar los disertantes.');
+        }
+    });
+});
+
 
 
 

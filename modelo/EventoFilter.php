@@ -7,7 +7,9 @@ Class EventoFilter extends Evento{
 
     public function getEventosFilter($filtros=[]){
         $this->getEventos(); //llamamos a los disertantes;
-        $sql="SELECT * FROM ".$this->table." WHERE 1=1";
+
+        $sql="SELECT evento.*,disertante.nombre FROM ".$this->table.",disertante WHERE (evento.disertante_id = disertante.id) and 1=1";
+        //echo $sql; mi mejor amigo
         if(!empty($filtros)){
             //creamos los campos
             if(isset($filtros['id'])){

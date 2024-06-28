@@ -14,7 +14,7 @@ $filtros = [];
 
 
 //creamos las variables para paginar
-var_dump($_REQUEST)."<br>";
+//var_dump($_REQUEST)."<br>";
 if (isset($_GET["page"])) {
     $paginaActual = $_GET['page'];
 } else {
@@ -31,12 +31,12 @@ $cantidadRegistros = $arregloCantidad['cantidad'];
 $offset = ($paginaActual) * $paginasRegistro;
 // Obtener el total de registros desde la base de datos
 $totalPaginas = ceil($cantidadRegistros/$paginasRegistro); //enteramos los resultados
-echo "total de registros por pagina: ".$paginasRegistro."<br>";
-echo "pagina actual: ".$paginaActual."<br>";
-echo "cantidad de registros: ".$cantidadRegistros."<br>";
-echo "total de paginas que se deben dividir la cantidad de registros: ".$totalPaginas."<br>"; 
-echo "el offset debe ser de: ".$offset."<br>";
-$array_disertante = $filter->arregloFilter($paginasRegistro,$offset,$filtros); //['apellidos' => 'Ramos', 'nombre' => 'a']
+// echo "total de registros por pagina: ".$paginasRegistro."<br>";
+// echo "pagina actual: ".$paginaActual."<br>";
+// echo "cantidad de registros: ".$cantidadRegistros."<br>";
+// echo "total de paginas que se deben dividir la cantidad de registros: ".$totalPaginas."<br>"; 
+// echo "el offset debe ser de: ".$offset."<br>";
+$datosDisertantes= $filter->arregloFilter($paginasRegistro,$offset,$filtros); //['apellidos' => 'Ramos', 'nombre' => 'a']
 
 //declaramos las variables afuera
 //$id = (isset($_POST['id']))?SanitizeVars::INT($_POST['id']):false;
@@ -88,15 +88,17 @@ $perpage = (isset($_POST['perpage']))?SanitizeVars::INT($_POST['perpage']):false
 
  <div class="hover:border-spacing-2 min-w-full divide-y divide-gray-200 mt-8">
     <tr><!-- los imputs -->
-        <th>id</th><input class="mb-auto" name="inputFiltroId" id="inputFiltroId" label="id">
+       
         <th>nombre</th><input class="mb-auto" name="inputFiltroNombre" id="inputFiltroNombre" label="nombre" value=<?=$nombre?>>
         <th>apellidos</th><input class="mb-auto" name="inputFiltroApellidos" id="inputFiltroApellidos" label="apellidos" value=<?=$apellidos?>>
         <th>telefono</th><input class="mb-auto" name="inputFiltroTelefono" id="inputFiltroTelefono" label="telefono" value=<?=$telefono?>>
-        <th>page</th><input class="mb-auto" name="inputFiltroPage" id="inputFiltroPage" label="page">
-        <th>perpage</th><input class="mb-auto" name="inputFiltroPerpage" id="inputFiltroPerpage" label="perpage">
+       
  </tr>
  </div>
  
+
+
+
 
 
 <!-- clases de la libreria de vale = table table-striped -->
@@ -118,7 +120,7 @@ $perpage = (isset($_POST['perpage']))?SanitizeVars::INT($_POST['perpage']):false
         </thead>
 
         <?php //abrimos llave 
-        if(empty($array_disertante)){ //en el caso que no existan elementos 
+        if(empty($datosDisertantes)){ //en el caso que no existan elementos 
         ?> 
         <tr>
             <td>NO EXISTEN DATOS</td>
@@ -128,7 +130,7 @@ $perpage = (isset($_POST['perpage']))?SanitizeVars::INT($_POST['perpage']):false
         ?> 
 
         <?php //abrimos llave 
-        foreach ($array_disertante as $subArreglo) { //el FOREACH del arreglo de disertantes y cada sub arreglo dentro
+        foreach ($datosDisertantes as $subArreglo) { //el FOREACH del arreglo de disertantes y cada sub arreglo dentro
         //var_dump($subArreglo) ;
         $contador++; //contador para limitar los elementos en pantalla
         ?> 
@@ -136,14 +138,14 @@ $perpage = (isset($_POST['perpage']))?SanitizeVars::INT($_POST['perpage']):false
         <tr>
             <td><?=$numeral++;?></td>
             <td><input class="check" id="checkItem" name="inputIdDisertante[]" value="<?=$subArreglo['id']; //elemento del arreglo, el checked tiene [] pq es un arreglo?>" type="checkbox"></td>
-            <td id="inputId" data-id="<?=$subArreglo['id'];?>" class = " font-serif text-slate-500 hover:text-blue-600" ><strong><?=$subArreglo['id']; //elemento del arreglo ?>
+            <td id="inputId" data-id="<?=$subArreglo['id'];?>" class = "" ><strong><?=$subArreglo['id']; //elemento del arreglo ?>
             </strong></td>
-            <td data-nombre="<?=$subArreglo['nombre'];?>" class = " font-serif text-slate-500 hover:text-blue-600" ><?=$subArreglo['nombre']; //elemento del arreglo ?></td>
-            <td data-apellidos="<?=$subArreglo['apellidos'];?>" class = " font-serif text-slate-500 hover:text-blue-600" ><?=$subArreglo['apellidos']; //elemento del arreglo ?></td>
-            <td data-telefono="<?=$subArreglo['telefono'];?>" class = " font-serif text-slate-500 hover:text-blue-600" ><?=$subArreglo['telefono']; //elemento del arreglo ?></td>
-            <td data-url="<?=$subArreglo['url'];?>" class = " font-serif text-slate-500 hover:text-blue-600" ><?=$subArreglo['url']; //elemento del arreglo ?></td>
-            <td data-twitter="<?=$subArreglo['twitter'];?>" class = " font-serif text-slate-500 hover:text-blue-600" ><?=$subArreglo['twitter']; //elemento del arreglo ?></td>
-            <td data-linkedin="<?=$subArreglo['linkedin'];?>" class = " font-serif text-slate-500 hover:text-blue-600" ><?=$subArreglo['linkedin']; //elemento del arreglo ?></td>
+            <td data-nombre="<?=$subArreglo['nombre'];?>" class = "" ><?=$subArreglo['nombre']; //elemento del arreglo ?></td>
+            <td data-apellidos="<?=$subArreglo['apellidos'];?>" class = "" ><?=$subArreglo['apellidos']; //elemento del arreglo ?></td>
+            <td data-telefono="<?=$subArreglo['telefono'];?>" class = "" ><?=$subArreglo['telefono']; //elemento del arreglo ?></td>
+            <td data-url="<?=$subArreglo['url'];?>" class = "" ><?=$subArreglo['url']; //elemento del arreglo ?></td>
+            <td data-twitter="<?=$subArreglo['twitter'];?>" class = "" ><?=$x =  substr($subArreglo['twitter'],10); //elemento del arreglo ?></td>
+            <td data-linkedin="<?=$subArreglo['linkedin'];?>" class = "" ><?=$l = substr($subArreglo['linkedin'],24); //elemento del arreglo ?></td>
             <td> 
 		          <button class="btn-editar" value="<?=$subArreglo['id'];?>" type="hidden" name="inputIdDisertante" id="btneditar" data-id="<?=$subArreglo['id'];?>" onclick="disertanteEditar(<?=$subArreglo['id'];?>)" >editar<i class="ri-user-shared-line"></i></button>
 		          <button name="inputIdDisertante"  value="<?=$subArreglo['id'];?>" id="btnborrar"  onclick="eliminarDisertante(<?=$subArreglo['id'];?>)">eliminar<i class="ri-user-unfollow-line"></i></i></button>
@@ -160,26 +162,6 @@ $perpage = (isset($_POST['perpage']))?SanitizeVars::INT($_POST['perpage']):false
         ?> 
     </tbody>
 </table>
-<!-- Botones de paginación -->
-<ul class="pagination">
-    <?php if ($paginaActual > 1) : ?>
-        <li class="page-item">
-            <a class="page-link" href="#" onclick="cambiarPagina(<?= $paginaActual - 1 ?>)">Anterior</a>
-        </li>
-    <?php endif; ?>
-
-    <?php for ($i = 1; $i <= $totalPaginas; $i++) : ?>
-        <li class="page-item <?= ($i == $paginaActual) ? 'active' : '' ?>">
-            <a class="page-link" href="#" onclick="cambiarPagina(<?= $i ?>)"><?= $i ?></a>
-        </li>
-    <?php endfor; ?>
-
-    <?php if ($paginaActual < $totalPaginas) : ?>
-        <li class="page-item">
-            <a class="page-link" href="#" onclick="cambiarPagina(<?= $paginaActual + 1 ?>)">Siguiente</a>
-        </li>
-    <?php endif; ?>
-</ul>
 
 
 <button class = "font-serif text-slate-500 hover:text-blue-600" id="enviar" onclick="aplicarFiltros()">enviar filtros <i class="ri-code-fill"></i></button>

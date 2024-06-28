@@ -74,13 +74,13 @@ if($nombre && $apellidos){
     if ($id){
         $param['id'] = $id;
         $disertante->save($param);
-        $datos = $disertante ->save($param);
+        //$datos = $disertante ->save($param);
         //var_dump($datos);
         $arreglo_resultado['codigo'] = 10;
         $arreglo_resultado['mensaje'] = "se encontro el ID";
     }else{
         $disertante->save($param);
-        $datos = $disertante ->save($param);
+        //$datos = $disertante ->save($param);
         //var_dump($datos);
         $arreglo_resultado['codigo'] = 99;
         $arreglo_resultado['mensaje'] = "no encontro el ID";
