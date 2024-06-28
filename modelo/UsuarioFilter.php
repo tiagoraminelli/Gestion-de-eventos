@@ -35,7 +35,7 @@ if(!empty($filtros)){ //preguntamos si es diferente de vacio
         }
         
         if(isset($filtros['apellidos'])){
-        $sql.=" AND apellido LIKE '%".$filtros['apellidos']."%'";  // el .=  es una concatenacion AGREGADA que usaremos para concatenar valores a la cadena
+        $sql.=" AND apellidos LIKE '%".$filtros['apellidos']."%'";  // el .=  es una concatenacion AGREGADA que usaremos para concatenar valores a la cadena
     
         }
         if(isset($filtros['dni'])){

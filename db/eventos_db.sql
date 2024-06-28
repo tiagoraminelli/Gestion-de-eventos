@@ -76,7 +76,7 @@ CREATE TABLE `evento_usuario` (
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `apellido` varchar(45) DEFAULT NULL,
+  `apellidos` varchar(45) DEFAULT NULL,
   `dni` varchar(8) DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL,
   `telefono` varchar(15) DEFAULT NULL,

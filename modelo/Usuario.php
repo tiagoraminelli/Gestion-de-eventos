@@ -116,7 +116,7 @@ public function getUsuariosByNombre($Nombre){
 
 public function getUsuariosByApellidos($Apellidos){
     $this->getConection(); //EXACTAMENTE LO MISMO QUE LO ANTERIOR
-    $sql="SELECT * FROM ".$this->table." WHERE Apellido = ?"; //consulta sql generica, ese signo ? es un valor
+    $sql="SELECT * FROM ".$this->table." WHERE Apellidos = ?"; //consulta sql generica, ese signo ? es un valor
     $stmt=$this->conection->prepare($sql); //metemos la cadena que armamos para armar la consulta
     $stmt->execute([$Apellidos]);//aca metemos todos los valores al ? pero tenemos que tener en cuenta el ORDEN
     return $stmt->fetch(PDO::FETCH_ASSOC); //te manda solo 1 linea 
@@ -266,7 +266,7 @@ if(isset($param['password'])){
 
 
 if ($exists){
-    $sql = "UPDATE `usuario` SET `nombre` = ?, `apellido` = ?, `dni` = ?, `direccion` = ?, `telefono` = ?, `email` = ?, `password` = ? WHERE `id` = ?";
+    $sql = "UPDATE `usuario` SET `nombre` = ?, `apellidos` = ?, `dni` = ?, `direccion` = ?, `telefono` = ?, `email` = ?, `password` = ? WHERE `id` = ?";
     $stmt=$this->conection->prepare($sql); //metemos la cadena que armamos para armar la consulta
     $stmt->execute([
         $this->Nombre, $this->Apellidos, $this->Dni, $this->Direccion, $this->Telefono, $this->Email, $this->Password, $this->id
@@ -274,7 +274,7 @@ if ($exists){
 
 }else {
     // INSERT
-    $sql = "INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `dni`, `direccion`, `telefono`, `email`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO `usuario` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `telefono`, `email`, `password`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $this->conection->prepare($sql);
     $stmt->execute([
         $this->Nombre, $this->Apellidos, $this->Dni, $this->Direccion, $this->Telefono, $this->Email, $this->Password

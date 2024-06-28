@@ -89,7 +89,7 @@ $totalPaginas = ceil($totalUsuarios / $porPagina);
             <td class="user-id" id="inputId" data-id="<?=$subArreglo['id'];?>" ><strong><?=$subArreglo['id']; //elemento del arreglo ?>
             </strong></td>
             <td class="user-nombre" data-nombre="<?=$subArreglo['nombre'];?>" ><?=$subArreglo['nombre']; //elemento del arreglo ?></td>
-            <td class="user-apellidos" data-apellidos="<?=$subArreglo['apellido'];?>" ><?=$subArreglo['apellido']; //elemento del arreglo ?></td>
+            <td class="user-nombre" data-nombre="<?=$subArreglo['apellidos'];?>" ><?=$subArreglo['apellidos']; //elemento del arreglo ?></td>
             <td class="user-url" data-dni="<?=$subArreglo['dni'];?>" ><?=$subArreglo['dni']; //elemento del arreglo ?></td>
             <td class="user-direccion" data-direccion="<?=$subArreglo['direccion'];?>" ><?=$subArreglo['direccion']; //elemento del arreglo ?></td>
             <td class="user-telefono" data-telefono="<?=$subArreglo['telefono'];?>"><?=$subArreglo['telefono']; //elemento del arreglo ?></td>

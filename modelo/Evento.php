@@ -199,6 +199,15 @@ public function getCantidadEventos(){
 
 }
 
+public function getDatosDisertanteByEventos(){
+    $this->getConection(); //EXACTAMENTE LO MISMO QUE LO ANTERIOR
+    $sql="SELECT * FROM ".$this->table. ",disertante WHERE evento.disertante_id = disertante.id"; //consulta sql generica, ese signo ? es un valor
+    $stmt=$this->conection->prepare($sql); //metemos la cadena que armamos para armar la consulta
+    $stmt->execute();//aca metemos todos los valores al ? pero tenemos que tener en cuenta el ORDEN
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); //te manda solo 1 linea 
+
+}
+
 public function deleteEventosById($Id){ //empieza la funtion
     $this->getConection(); //ejecuta un metodo de la clase que gestiona la conexion a la base de datos
     $sql="DELETE FROM ".$this->table." WHERE `id` = ? "; //armamos la cadena sql 
@@ -304,37 +313,38 @@ return $this->Id;
 
 } //fin de la clase evento
 
-$e = new evento();
+// $e = new evento();
 
-$resultados = $e -> getEventos(); //getEventos
-/* $param = [
-'id' => 1 ,
-'titulo' => 'desarrollo de Sotfware Gestion de Eventos ',
+// $resultados = $e -> getEventos(); //getEventos
+/* 
+$param = [
+'titulo' => 'desarrollo de Sotfware Gestion de Eventos n° ',
 'descripcion' => 'Es una catedra donde estudiamos las formas en las que creamos Sotfware ',
 'fecha' => '2024-06-12',
-'hora' => '17:00:00',
-'duracion' => 6,
-'idioma' => 'Ingles',
-'disertante_id' => '333'];
- */
+'hora' => '18:00:00',
+'duracion' => 1,
+'idioma' => 'español',
+'disertante_id' => '51'];
+*/
 
-$param = [
-    'id' => 20,
-    'titulo' => 'Experiencia Laboral'
-];
+// $param = [
+//     'id' => 1,
+//     'titulo' => 'Gestion de Proyectos',
+//     'descripcion' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita unde est debitis veritatis nobis culpa consequatur, optio similique quae sint! Tempore necessitatibus quaerat dolorum, optio officia exercitationem error expedita nemo!'
+// ]; 
     
 
-//$e -> save($param);
-if(empty($resultados)){
-    $resultados = ['datos' => 'no existen'];
-}
+// $e -> save($param);
+// if(empty($resultados)){
+//     $resultados = ['datos' => 'no existen'];
+// }
 
 
 
-/* echo '<pre>'; 
-print_r($resultados);
-print_r($param);
-echo '</pre>'; */
+// echo '<pre>'; 
+// //print_r($resultados);
+// //print_r($param);
+// echo '</pre>'; 
 
 
 

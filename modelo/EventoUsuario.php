@@ -42,12 +42,14 @@ public function getEventosUsuarios(){ //creamos la conexion a la tabla
 
 }
 
-public function getEventosUsuariosByIds($IdE,$IdU){ //empieza la funtion
-    $this->getConection(); //ejecuta un metodo de la clase que gestiona la conexion a la base de datos
-    $sql="SELECT FROM ".$this->table." WHERE Evento_id = ? && Usuario_id  = ? "; //armamos la cadena sql 
-    $stmt=$this->conection->prepare($sql); //metemos la cadena que armamos para armar la consulta
-    return $stmt->execute([$IdE,$IdU]); //ejecutamos la consulta
+public function getEventosUsuariosByIds($IdE,$IdU){
+    $this->getConection();
+    $sql = "SELECT * FROM ".$this->table." WHERE Evento_id = ? AND Usuario_id = ?";
+    $stmt = $this->conection->prepare($sql);
+    $stmt->execute([$IdE, $IdU]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Cambiado para devolver los resultados como arreglo asociativo
 }
+
 
 public function getEventosUsuariosByEventos($id){ //creamos la conexion a la tabla
     $this->getConection(); //ejecuta un metodo de la clase que gestiona la conexion a la base de datos
@@ -66,7 +68,19 @@ public function getEventosUsuariosByUsuarios($id){ //creamos la conexion a la ta
     return $stmt->fetchAll(PDO::FETCH_ASSOC); //retorno de todos los resultados de la consulta
 
 }
+
+
 // funciones especificas 
+
+// 
+public function getDatosUsuariosInscriptosEventos($id) { ////////ESYEEE
+    $this->getConection();
+       //dni nombre apellidos telefono email
+    $sql = "SELECT Usuario_id, usuario.dni,usuario.nombre,usuario.apellidos,usuario.telefono,usuario.email FROM `evento_usuario`,usuario WHERE (Evento_id = ?) AND (Usuario_id = usuario.id)";
+    $stmt = $this->conection->prepare($sql);
+    $stmt->execute([$id]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 public function getCantidadEventosUsuario($id) {
     $this->getConection();
@@ -87,7 +101,7 @@ public function deleteEventosUsuariosByIds($IdE,$IdU){ //empieza la funtion
 
 public function save($param) {
     $this->getConection(); // Conectarse a la base de datos
-
+  
     // Verificar si existe la instancia
     $exists = false;
     if (isset($param['ide']) && isset($param['idu']) && $param['ide'] != "" && $param['idu'] != "") {
@@ -96,8 +110,8 @@ public function save($param) {
         if ($ActualInstancia) {
             // Si existe un ID, establecer valores para UPDATE
             $exists = true;
-            $this->EventoId = $ActualInstancia['ide'];
-            $this->UsuarioId = $ActualInstancia['idu']; // Aquí debes corregir si es necesario, asumiendo que 'nombre' es el nombre de la columna correcto
+            $this->EventoId = $ActualInstancia[0]['ide'];
+            $this->UsuarioId = $ActualInstancia[0]['idu']; 
         }
     }
 
@@ -134,25 +148,5 @@ public function save($param) {
 
 //INSERT INTO `evento_usuario` (`Evento_id`, `Usuario_id`) VALUES ('1', '3');
 } //fin de la clase
-
-
-$eu = new EventoUsuario();
-//$eu -> deleteEventosUsuariosByIds(1,1); mandamos ambos ids
-
-
-echo '<pre>'; 
-
-print_r($eu->getEventosUsuarios());
-
-echo '</pre>';
-
-$param = ['ide' => 10, 'idu' => 2];
-echo '<pre>'; 
-
-echo "cargue datos para el usuario eventos";
-//var_dump($param);
-$eu-> save($param);
-
-echo '</pre>';
 
 ?>
