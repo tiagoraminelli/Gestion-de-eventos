@@ -1,12 +1,12 @@
 <?php
 require_once 'Db.php';
-include '../lib/GeneradorDatos.php';
+//include '../lib/GeneradorDatos.php';
 //llamamos a las librerias
 
 Class Evento {
-    protected $table = "evento"; //creamos la tabla usuario
+    protected $table = "evento"; //creamos la tabla evento
 protected $conection; //protegemos el atributo de conexion;
-protected $cantidad; //protegemos la cantidad de disertantes
+protected $cantidad; //protegemos la cantidad de eventos
 private $Id;
 private $Titulo;
 private $Descripcion;
@@ -213,6 +213,20 @@ public function deleteEventosById($Id){ //empieza la funtion
     $sql="DELETE FROM ".$this->table." WHERE `id` = ? "; //armamos la cadena sql 
     $stmt=$this->conection->prepare($sql); //metemos la cadena que armamos para armar la consulta
     return $stmt->execute([$Id]); //ejecutamos la consulta
+}
+
+public function getPaginasPorEventos($porPagina, $offset) {
+    try {
+        $stmt = $this->conection->prepare("SELECT * FROM evento LIMIT :porPagina OFFSET :offset");
+        $stmt->bindParam(':porPagina', $porPagina, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $arregloUsuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $arregloUsuarios;
+    } catch (PDOException $e) {
+        echo 'Error al obtener usuarios paginados: ' . $e->getMessage();
+        return []; // En caso de error, retornar un arreglo vacío o manejar el error según tu aplicación
+    }
 }
 
 public function save($param){ //creamos la funcion y le mandamos 1 ARREGLO ASOCIATIVO

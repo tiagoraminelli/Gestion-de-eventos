@@ -1,6 +1,6 @@
 <?php
 // Establecer la ruta del include_path si es necesario
-set_include_path("../modelo");
+set_include_path("../modelo/");
 
 // Incluir el archivo DisertanteFilter.php
 require 'DisertanteFilter.php';
