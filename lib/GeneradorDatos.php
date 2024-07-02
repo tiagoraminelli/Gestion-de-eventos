@@ -3,7 +3,131 @@
 include 'GeneradorLorem.php';
 
 abstract class GeneradorDatos { //se define asi pq es abstracta
+//----------------------separador de funciones ----------------------
 
+public static function numeroAleatorio(){
+    // Genera un número aleatorio entre 30 y 50
+    $numero = mt_rand(30, 50);
+
+    // Convierte el número a cadena (VARCHAR)
+    $numeroComoString = strval($numero);
+
+    return $numeroComoString;
+}
+
+//----------------------separador de funciones ----------------------
+public static function idiomasAleatorios() {
+    $idiomas = [
+        "Inglés",
+        "Español",
+        "Francés",
+        "Alemán",
+        "Italiano",
+        "Portugués",
+        "Chino (Mandarín)",
+        "Japonés",
+        "Coreano",
+        "Ruso",
+        "Árabe",
+        "Bengalí",
+        "Turco",
+        "Holandés",
+        "Sueco",
+        "Polaco",
+        "Danés",
+        "Noruego",
+        "Finlandés"
+    ];
+
+    // Escoge un idioma aleatorio del arreglo
+    $idiomaAleatorio = $idiomas[array_rand($idiomas)];
+
+    return $idiomaAleatorio;
+}
+
+//----------------------separador de funciones ----------------------
+
+public static function horaAleatoria() {
+    // Genera un número aleatorio entre 0 y 95 para representar los intervalos de 15 minutos
+    $intervalo = mt_rand(0, 95);
+
+    // Calcula la hora y los minutos basados en el intervalo
+    $horas = floor($intervalo / 4); // 4 intervalos por hora
+    $minutos = ($intervalo % 4) * 15; // 15 minutos por intervalo
+
+    // Formatea la hora en formato HH:mm
+    $horaAleatoria = sprintf('%02d:%02d', $horas, $minutos);
+
+    return $horaAleatoria;
+}
+//----------------------separador de funciones ----------------------
+public static function timeAleatoria() {
+    // Genera un número aleatorio entre 1 y 8 para las horas
+    $horas = mt_rand(1, 8);
+
+    // Genera un número aleatorio entre 0 y 11 para los bloques de 5 minutos (0, 5, 10, ..., 55)
+    $minutos = mt_rand(0, 11) * 5;
+
+    // Formatea la duración en formato HH:mm
+    $duracion = sprintf('%02d:%02d', $horas, $minutos);
+
+    return $duracion;
+}
+//----------------------separador de funciones ----------------------
+
+    public static function dateAleatoria() {
+        // Genera una fecha aleatoria entre el 1 de enero de 2000 y el 31 de diciembre de 2023
+        $timestamp = mt_rand(strtotime('2024-01-01'), strtotime('2024-12-31'));
+        $fechaAleatoria = date('Y-m-d', $timestamp);
+        return $fechaAleatoria;
+    }
+
+//----------------------separador de funciones ----------------------
+    static public function titulosAleatorios($num = 1){ //creamos la funcion y definimos que reciba por parametro la cantidad de bucles que hara
+        $titulos = [
+            "Conferencia Internacional de Tecnología 2024",
+            "Feria de Innovación y Diseño",
+            "Expo Emprendedores 2024",
+            "Cumbre Global de Sostenibilidad",
+            "Festival Internacional de Arte Contemporáneo",
+            "Semana de la Moda 2024",
+            "Congreso Mundial de Inteligencia Artificial",
+            "Cumbre Mundial de Energías Renovables",
+            "Foro Global de Economía Digital",
+            "Simposio Internacional de Neurociencia",
+            "Conferencia Internacional de Robótica Avanzada",
+            "Feria de Startups y Tecnología",
+            "Encuentro Global de Innovación Social",
+            "Congreso Mundial de Ciencia y Tecnología",
+            "Expo Virtual de Realidad Aumentada",
+            "Cumbre Internacional de Blockchain",
+            "Festival de Música Electrónica 2024",
+            "Simposio de Bioingeniería",
+            "Conferencia Global de Seguridad Cibernética",
+            "Cumbre Mundial de Cambio Climático",
+            "Expo Internacional de Automatización Industrial",
+            "Foro de Economía Circular",
+            "Congreso Mundial de Salud Digital",
+            "Feria de Turismo Sostenible",
+            "Simposio de Inteligencia Ambiental"
+        ];
+            
+        
+        $cadenaTitulos = "";
+        $claves = array_rand($titulos,$num); // creamos las claves para recorrer el arreglo con la funcion
+            if(is_array($claves)){ //comprovamos que es UN ARREGLO
+                for($i=0;$i<$num;$i++){ //lo recorremos
+                    $cadenaTitulos.= $titulos[$claves[$i]]." "; //lo concatenamos en una cadena 
+                  
+                }
+            }else{
+                $cadenaTitulos = $titulos[$claves];
+            }
+        return $cadenaTitulos;
+        
+        }
+
+//----------------------separador de funciones ----------------------
 
 static public function passwordAleatoria($longitud = 8) {
         // Caracteres posibles para la Password
@@ -92,6 +216,8 @@ static public function nombreAleatorio($num = 1){ //
     }
     return $cadenaNombres;
 }
+
+
 
 //----------------------separador de funciones ----------------------
 

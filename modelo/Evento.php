@@ -1,6 +1,6 @@
 <?php
 require_once 'Db.php';
-//include '../lib/GeneradorDatos.php';
+include './lib/GeneradorDatos.php';
 //llamamos a las librerias
 
 Class Evento {
@@ -319,6 +319,26 @@ return $this->Id;
 //var_dump($param,$exists);
 } // fin de la funcion
 
+public function cargaPrueba(){ //creamos la funcion para cargar
+    for ($i = 1; $i <= 1; $i++){ //definimos un rango de datos para cargar
+        
+        
+
+
+           
+    echo "espeamos la carga de prueba"."<br>";
+        //$id	
+         $titulo = generadorDatos::titulosAleatorios();
+         $descripcion = generadorDatos::loremAleatorio();
+         $fecha = generadorDatos::dateAleatoria();
+         $hora = generadorDatos::horaAleatoria();;
+         $duracion = generadorDatos::timeAleatoria();
+         $idioma = generadorDatos::idiomasAleatorios();
+         $disertanteId = generadorDatos::numeroAleatorio();
+     //$this->save([ ]); 
+     //echo "<br>".$disertanteId."<br>"; 
+    }
+}
 
 
 //lo usare mas tarde
@@ -327,7 +347,7 @@ return $this->Id;
 
 } //fin de la clase evento
 
-// $e = new evento();
+$e = new evento();
 
 // $resultados = $e -> getEventos(); //getEventos
 /* 
@@ -359,7 +379,7 @@ $param = [
 // //print_r($resultados);
 // //print_r($param);
 // echo '</pre>'; 
-
+$e -> cargaPrueba();
 
 
 

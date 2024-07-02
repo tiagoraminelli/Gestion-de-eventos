@@ -81,7 +81,7 @@ $numeral = 1;
             <td class="user-disertante-evento-id"><?=$eventos['nombre']?></td>
             <td>
                 <button onclick="eventoEliminar(<?=$eventos['id']?>)">eliminar</button>
-                <button>editar</button>
+                <button onclick="eventoEditar(<?=$eventos['id']?>)">editar</button>
                 <button onclick="verInscriptos(<?=$eventos['id']?>)">ver</button>  
             </td>
         </tr>
@@ -97,4 +97,20 @@ $numeral = 1;
 
 
 </body>
+<script>
+    function eventoEliminar(){
+        // Crear objeto con el ID del disertante a eliminar
+    let parametros = { "inputIdEvento": id };
+
+if (confirm("¿Estás seguro de eliminar este evento?")) {
+    $.post('./funciones/eventoEliminar.php', parametros, function(funcion) {
+        $('#mensaje').html('<div class="alert alert-success" role="alert">evento eliminado exitosamente!</div>'); 
+       
+    }, "json");
+} else {
+    $('#mensaje').html('<div class="alert alert-danger" role="alert">Se ha cancelado la operación</div>');
+}
+    }
+</script>
 </html>
+
