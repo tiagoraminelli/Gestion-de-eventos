@@ -1,17 +1,14 @@
 <?php
 require_once 'Db.php';
-include '../lib/GeneradorDatos.php';
-Class Usuario {
+//include '../lib/GeneradorDatos.php';
+require_once 'Persona.php'; // Importamos la clase Persona para poder extenderla
+Class Usuario extends Persona{
     protected $table = "usuario"; //creamos la tabla usuario
 protected $conection; //protegemos el atributo de conexion;
 protected $cantidad; //protegemos la cantidad de disertantes
-private $Id;
-private $Nombre;
-private $Apellidos;
+
 private $Dni;
 private $Direccion;
-private $Telefono;
-private $Email;
 private $Password;
 
 function getConection(){ //creamos la conexion con la base de datos;
@@ -20,62 +17,38 @@ function getConection(){ //creamos la conexion con la base de datos;
 }
 
 //GETS
-public function getId(){
-    return $this->Id;
-}
-public function getNombre(){
-    return $this->Nombre;
-}
-public function getApellidos(){
-    return $this->Apellidos;
-}
+
 public function getDni(){
      return $this->Dni;
 }
+
 public function getDireccion(){
      return $this->Direccion;
 }
-public function getTelefono(){
-     return $this->Telefono;
-}
-public function getEmail(){
-     return $this->Email;
-}
+
 public function getPassword(){
      return $this->Password;
 }
 
 
 // SETS
-public function setId(){
-    return $this->Id;
-}
-public function setNombre(){
-    return $this->Nombre;
-}
-public function setApellidos(){
-    return $this->Apellidos;
-}
+
 public function setDni(){
      return $this->Dni;
 }
 public function setDireccion(){
      return $this->Direccion;
 }
-public function setTelefono(){
-     return $this->Telefono;
-}
-public function setEmail(){
-     return $this->Email;
-}
+
 public function setPassword(){
      return $this->Password;
 } 
 
 
-public function __construct($Nombre = "",$Apellidos = ""){ //$Nombre,$Apellidos
-    $this->Apellidos = $Apellidos;
-    $this->Nombre = $Nombre;
+public function __construct($Dni = "",$Direccion = "",$Password = ""){ //$Nombre,$Apellidos
+    $this->Dni = $Dni;
+    $this->Direccion = $Direccion;
+    $this->Password = $Password;
     return $this;
 }
 
@@ -186,28 +159,11 @@ set default values
     //check if exists
     $exists = FALSE;
     if(isset($param['id']) && ($param['id'] != "")){ //si esta creado el id y es diferente de vacio
-        $ActualInstancia = $this->getDisertantesById($param['id']); //se guarda el arreglo segun el id
-        //current values
-        /*
-        private $Id;
-        private $Nombre;
-        private $Apellidos;
-        private $Dni;
-        private $Direccion;
-        private $Telefono;
-        private $Email;
-        private $Password;
-        ['id'];
-        ['nombre'];
-        ['apellidos'];
-        ['dni'];
-        ['direccion'];
-        ['telefono'];
-        ['email'];
-        ['password'];
+        $ActualInstancia = $this->getUsuariosById($param['id']); //se guarda el arreglo segun el id
 
-        */
-        if($ActualInstancia['id']){ //si existe un ID se setean los valores para UPDATE
+
+    
+    if($ActualInstancia['id']){ //si existe un ID se setean los valores para UPDATE
             $exists = TRUE; //existe el id
             $this->id = $ActualInstancia['id'];
             $this->Nombre = $ActualInstancia['nombre']; // empezamos a setear valores
@@ -361,8 +317,31 @@ deleteUsuariosById($id) */
 
 }//fin de la clase
 
+//echo "<br>"."nueva persona";
+$p = new persona;
+$u = new usuario;
+$idToDelete = 21;
+//$deleted = $u->deletePersonAndUsuarioById($idToDelete);
 
+$datos = $p->save(['nombre' => 'tiago','apellido' => 'raminelli']);
+var_dump($datos);
+  // Guardar o actualizar al usuario en la base de datos
+//   $idUsuario = $u->save([
+//     'id' => $usuario->getId(),
+//     'nombre' => $usuario->getNombre(),
+//     'apellidos' => $usuario->getApellidos(),
+//     'dni' => $usuario->getDni(),
+//     'direccion' => $usuario->getDireccion(),
+//     'telefono' => $usuario->getTelefono(),
+//     'email' => $usuario->getEmail(),
+//     'password' => $usuario->getPassword()
+// ]);
 
+// if ($deleted) {
+//     echo "Registros de Persona y usuario con ID $idToDelete eliminados correctamente.<br>";
+// } else {
+//     echo "Error al eliminar registros de Persona y usuario con ID $idToDelete.<br>";
+// }
 
 
 ?>

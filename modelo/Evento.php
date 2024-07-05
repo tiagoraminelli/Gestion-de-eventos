@@ -1,6 +1,7 @@
 <?php
 require_once 'Db.php';
-include './lib/GeneradorDatos.php';
+//include '../lib/GeneradorDatos.php';
+
 //llamamos a las librerias
 
 Class Evento {
@@ -298,7 +299,7 @@ if(isset($param['disertante_id'])){
 
 if ($exists){ 
     //actualizar
-    $sql = "UPDATE `evento` SET `titulo` = ?, `descripcion` = ?, `fecha` = ?, `hora` = ?, `duracion` = ?, `idioma` = ?, `disertante_id` = ? WHERE `id` = ?"; 
+    $sql = "UPDATE `evento` SET `titulo` = ?, `descripcion` = ?, `fecha` = ?, `hora` = ?, `duracion` = ?, `idioma` = ?, `disertante_id` = ? WHERE `id` = ?";    
     $stmt=$this->conection->prepare($sql); //metemos la cadena que armamos para armar la consulta
     $stmt->execute([
         $this->Titulo, $this->Descripcion, $this->Fecha, $this->Hora, $this->Duracion, $this->Idioma, $this->DisertanteEventoId, $this->Id
@@ -319,14 +320,12 @@ return $this->Id;
 //var_dump($param,$exists);
 } // fin de la funcion
 
+
 public function cargaPrueba(){ //creamos la funcion para cargar
     for ($i = 1; $i <= 1; $i++){ //definimos un rango de datos para cargar
         
-        
-
-
            
-    echo "espeamos la carga de prueba"."<br>";
+    //echo "espeamos la carga de prueba"."<br>";
         //$id	
          $titulo = generadorDatos::titulosAleatorios();
          $descripcion = generadorDatos::loremAleatorio();
@@ -335,7 +334,24 @@ public function cargaPrueba(){ //creamos la funcion para cargar
          $duracion = generadorDatos::timeAleatoria();
          $idioma = generadorDatos::idiomasAleatorios();
          $disertanteId = generadorDatos::numeroAleatorio();
-     //$this->save([ ]); 
+
+         echo "<br>".$titulo;
+         echo "<br>".$descripcion;
+         echo "<br>".$fecha;
+         echo "<br>".$hora;
+         echo "<br>".$duracion;
+         echo "<br>".$idioma;
+         echo "<br>".$disertanteId;
+
+     $this->save([
+         `titulo` => $titulo,
+         `descripcion` => $descripcion,
+         `fecha` => $fecha,
+         `hora` => $hora,
+         `duracion` => $duracion,
+         `idioma` => $idioma,
+         `disertante_id`=> $disertanteId
+         ]); 
      //echo "<br>".$disertanteId."<br>"; 
     }
 }
@@ -347,7 +363,7 @@ public function cargaPrueba(){ //creamos la funcion para cargar
 
 } //fin de la clase evento
 
-$e = new evento();
+//$e = new evento();
 
 // $resultados = $e -> getEventos(); //getEventos
 /* 
@@ -379,7 +395,8 @@ $param = [
 // //print_r($resultados);
 // //print_r($param);
 // echo '</pre>'; 
-$e -> cargaPrueba();
+ //$e -> cargaPrueba();
+
 
 
 

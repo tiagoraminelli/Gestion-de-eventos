@@ -2,7 +2,8 @@
 require_once 'Db.php';
 //include '../lib/GeneradorDatos.php'; comentamos la clase de generar datos ya que ya cargamos
 //creamos la clase disertante con sus atributos
-Class Disertante {
+require_once 'Persona.php'; // Importamos la clase Persona para poder extenderla
+Class Disertante extends Persona {
 protected $table = "disertante"; //creamos la tabla
 protected $conection; //protegemos el atributo de conexion;
 protected $cantidad; //protegemos la cantidad de disertantes
