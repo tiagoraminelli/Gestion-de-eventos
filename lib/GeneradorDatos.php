@@ -7,7 +7,7 @@ abstract class GeneradorDatos { //se define asi pq es abstracta
 
 public static function numeroAleatorio(){
     // Genera un número aleatorio entre 30 y 50
-    $numero = mt_rand(30, 50);
+    $numero = mt_rand(336, 350);
 
     // Convierte el número a cadena (VARCHAR)
     $numeroComoString = strval($numero);
