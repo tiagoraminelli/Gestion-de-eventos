@@ -1,0 +1,117 @@
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: 'San Serif';
+    background-color: #ffffff; /* Blanco */
+    color: #000000; /* Negro */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para el breadcrumb */
+.breadcrumb {
+    background-color: #fff; /* Amarillo */
+    color: #0000ff; /* Azul */
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    color: #0000ff; /* Azul */
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb .breadcrumb-item.active {
+    background-color: #ffffff; /* Blanco */
+    color: #0000ff; /* Azul */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #ffffff; /* Blanco */
+    color: #0000ff; /* Azul */
+}
+
+table th,
+table td {
+    border: 1px solid #000000; /* Negro */
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos para la navegación de paginación */
+.pagination {
+    background-color: #fff; /* Amarillo */
+    padding: 10px;
+    text-align: center;
+}
+
+.pagination-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination-link {
+    color: #0000ff; /* Azul */
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 2px;
+    border: 1px solid #0000ff; /* Azul */
+    border-radius: 5px;
+}
+
+.pagination-link:hover {
+    background-color: #0000ff; /* Azul */
+    color: #ffffff; /* Blanco */
+}
+
+.pagination-link.is-current {
+    background-color: #0000ff; /* Azul */
+    color: #ffffff; /* Blanco */
+}
+/* Contenedor de botones */
+.botones-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos para los botones */
+
+.btn {
+    background-color: #f0f0f0; /* Gris claro */
+    color: #000000; /* Negro */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e0e0e0; /* Gris más claro al pasar el cursor */
+}
+
+/* Estilos específicos para cada tipo de botón */
+.btn.editar {
+    background-color: #007bff; /* Azul */
+    color: #ffffff; /* Blanco */
+}
+
+.btn.borrar {
+    background-color: #dc3545; /* Rojo */
+    color: #ffffff; /* Blanco */
+}
+
+.btn.ver {
+    background-color: #28a745; /* Verde */
+    color: #ffffff; /* Blanco */
+}
+

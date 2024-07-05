@@ -1,0 +1,72 @@
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: 'San Serif', sans-serif;
+    background-color: #ffffff; /* Blanco */
+    color: #000000; /* Negro */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para las secciones */
+section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f8f9fa; /* Gris claro */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+section#editarUsuario {
+    border: 2px solid #007bff; /* Borde azul */
+}
+
+section#disertanteVer {
+    border: 2px solid #28a745; /* Borde verde */
+}
+
+/* Estilos para los títulos */
+strong {
+    color: #0000ff; /* Azul */
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da; /* Gris claro */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilos para los botones */
+button {
+    background-color: #007bff; /* Azul */
+    color: #ffffff; /* Blanco */
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
+}
+
+/* Estilos específicos para botones de tipo "volver" */
+button.volver {
+    background-color: #dc3545; /* Rojo */
+}
+
+button.volver:hover {
+    background-color: #bd2130; /* Rojo más oscuro al pasar el cursor */
+}
+
+/* Ajustes para la disposición de elementos en línea */
+p {
+    margin: 5px 0;
+}
