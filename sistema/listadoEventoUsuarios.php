@@ -13,12 +13,12 @@ $contador=0;
 <!-- nav -->
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
-  <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="../index.php">index</a></li>
-  <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="./menuDisertante.php">menu de disertantes</a></li>
-  <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=eventos_db">base de datos</a></li>
-  <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="./menuUsuarios.php">menu de usuarios</a></li>
-  <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="./listadoEventos.php">Listado de eventos </a></li>
-  <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="./listadoEventoUsuarios.php">Listado de inscriptos </a></li>
+  <li><a href="../index.php">index</a></li>
+  <li><a href="./menuDisertante.php">menu de disertantes</a></li>
+  <li><a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=eventos_db">base de datos</a></li>
+  <li><a href="./menuUsuarios.php">menu de usuarios</a></li>
+  <li><a href="./listadoEventos.php">Listado de eventos </a></li>
+  <li><a href="./listadoEventoUsuarios.php">Listado de inscriptos </a></li>
 
   <li class="breadcrumb-item active" aria-current="page">pagina actual</li>
 </ol>
@@ -31,7 +31,7 @@ $contador=0;
         } */
 ?>
 
-<table class="hover:border-spacing-2 min-w-full divide-y divide-gray-200 mt-8" id="example">
+<table class="" id="">
     <tbody>
         <thead>
             <tr>

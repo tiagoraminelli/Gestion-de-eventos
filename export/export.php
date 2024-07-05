@@ -3,7 +3,7 @@
 set_include_path("../modelo/");
 
 // Incluir el archivo DisertanteFilter.php
-require 'DisertanteFilter.php';
+require 'disertanteFilter.php';
 
 // Instanciar la clase DisertanteFilter
 $d = new DisertanteFilter();
