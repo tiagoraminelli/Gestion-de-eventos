@@ -17,7 +17,9 @@ $paginaActual = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 // Calculamos el offset para la consulta según la página actual
 $offset = ($paginaActual) * $porPagina;
 // Llamamos al método para obtener los usuarios con paginación
+$numEventosAleatorios=8;
 $eventosListados = $evento->getPaginasPorEventos($porPagina, $offset);
+
 // Obtenemos el total de usuarios para calcular el número total de páginas
 $aregloCantidad = $evento->getCantidadEventos();
 $totalEventos = $aregloCantidad['cantidad']; 
@@ -40,11 +42,11 @@ $totalPaginas = ceil($totalEventos / $porPagina);
 <nav class="bg-slate-50 font-serif " aria-label="breadcrumb">
 
   <ol class="breadcrumb">
-    <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="./index.php">index</a></li>
-    <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="./sistema/menuDisertante.php">menu de disertantes</a></li>
-    <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=eventos_db">base de datos</a></li>
-    <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="./sistema/menuUsuarios.php">menu de usuarios</a></li>
-    <li class="breadcrumb-item text-slate-500 hover:text-blue-600"><a href="./sistema/listadoeventos.php">Listado Eventos</a></li>
+    <li class="--"><a href="./index.php">index</a></li>
+    <li class="--"><a href="./sistema/menuDisertante.php">menu de disertantes</a></li>
+    <li class="--"><a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=eventos_db">base de datos</a></li>
+    <li class="--"><a href="./sistema/menuUsuarios.php">menu de usuarios</a></li>
+    <li class="--"><a href="./sistema/listadoeventos.php">Listado Eventos</a></li>
 
     <li class="breadcrumb-item active" aria-current="page">pagina actual</li>
   </ol>
@@ -53,22 +55,22 @@ $totalPaginas = ceil($totalEventos / $porPagina);
 
     <nav class="navbar">
     <div class="logo">
-      <a href="#">Gestion de Eventos</a>
+      <a href="./index.php">Gestion de Eventos</a>
     </div>
     <ul>
-      <li><a href="#">Inicio</a></li>
+      <li><a href="./index.php">Inicio</a></li>
       <li><a href="#">Eventos</a></li>
-      <li><a href="#">Disertantes</a></li>
+      <li><a href="./disertante.php">Disertantes</a></li>
       <li><a href="#">Patrocinadores</a></li>
       <li><a href="#">Consulta</a></li>
       <li><a href="#">Regístrate</a></li>
     </ul>
   </nav>
-<section class="side-section">
+<section class="side-section" id="side-section">
   <h1>¿Falta algún evento?</h1>
-  <p>Accede a la sección <a href="http://" target="_blank" rel="noopener noreferrer">Call for papers y envíanos tu pregunta</a></p>
-  <button>REGISTRATE</button>
-  <p>¿Ya estás registrado? <a href="http://" target="_blank" rel="noopener noreferrer">Acceder</a></p>
+  <p>Accede a la sección <a href="#" target="_blank" rel="noopener noreferrer">Call for papers y envíanos tu pregunta</a></p>
+  <button onclick="window.location.href='./sistema/html/formulario.html';">REGISTRATE</button>
+  <p>¿Ya estás registrado? <a href="./sistema/html/ingreso.html" target="_blank" rel="noopener noreferrer">Acceder</a></p>
   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia ad modi quibusdam! Vel ducimus nemo, aliquam tenetur quaerat necessitatibus quae. Pariatur, libero nulla ex ad mollitia harum id voluptates doloribus.</p>
   <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam exercitationem ab eveniet facere cupiditate magnam illum recusandae voluptatum non voluptatem. In labore inventore, numquam veniam quod non repudiandae voluptas eum!</p>
   <h2>Ventajas de asistir</h2>
@@ -81,7 +83,16 @@ $totalPaginas = ceil($totalEventos / $porPagina);
   </ul>
 </section>
 
-<section class="left-section">
+<!-- Contenedor oculto para detalles del evento -->
+<div id="evento-detalles" style="display: none;">
+  <!-- Aquí se mostrarán los detalles del evento -->
+
+  <div id="detalle-evento"></div>
+  <button  id="cerrar-detalle">Cerrar Detalle</button>
+</div>
+
+
+<section class="left-section" id="left-section">
   <h1>Eventos</h1>
 
   <?php 
@@ -108,8 +119,7 @@ $totalPaginas = ceil($totalEventos / $porPagina);
         $nuevaHora = $fecha->format('H:i:s');
         $horarios = substr($hora, 0, 5) . " - " . substr($nuevaHora, 0, 5) . "<br>";
     }
-
-    echo "<h3>" . "<br>" . $eventos['titulo'] . "</h3>";
+    echo "<h3><a href=\"#\" class=\"evento-link\" data-id=\"" . $eventos['id'] . "\">" . $eventos['titulo'] . "</a></h3>";
     echo "<p>" . "<br>" . $eventos['descripcion'] . "</p>";
 
     if ($contador == 3) {
@@ -149,6 +159,52 @@ $totalPaginas = ceil($totalEventos / $porPagina);
 
 
 
-<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
+<script>
+
+  //<------------------separador de funciones----------------->
+
+  $(document).ready(function() {
+    $('.evento-link').click(function(e) {
+      e.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+
+      var idEvento = $(this).data('id');
+
+      $.ajax({
+        type: 'POST', // Método de la solicitud
+        url: './sistema/funciones/informacionEventos.php', // URL del archivo PHP
+        data: { id: idEvento }, // Datos a enviar (en este caso, el id del evento)
+        dataType: 'json', // Tipo de datos que se espera recibir
+        success: function(response) {
+          // Ocultar las otras secciones y mostrar el detalle del evento
+          $('#side-section').hide();
+          $('#left-section').hide();
+          $('#evento-detalles').fadeIn();
+
+          // Mostrar los detalles del evento
+          $('#detalle-evento').html('<h2>' + response.titulo + '</h2>' +
+                                    '<p><strong>Descripción:</strong> ' + response.descripcion + '</p>' +
+                                    '<p><strong>Fecha:</strong> ' + response.fecha + '</p>' +
+                                    '<p><strong>Hora:</strong> ' + response.hora + '</p>' +
+                                    '<p><strong>Duración:</strong> ' + response.duracion + '</p>' +
+                                    '<p><strong>Idioma:</strong> ' + response.idioma + '</p>' +
+                                    '<p><strong>ID del Disertante:</strong> ' + response.disertante_id + '</p>');
+        },
+        error: function() {
+          alert('Error al cargar los detalles del evento.');
+        }
+      });
+    });
+
+    // Botón para cerrar el detalle del evento y mostrar las otras secciones
+    $('#cerrar-detalle').click(function() {
+      $('#evento-detalles').hide();
+      $('#side-section').fadeIn();
+      $('#left-section').fadeIn();
+    });
+  });
+</script>
+
+
