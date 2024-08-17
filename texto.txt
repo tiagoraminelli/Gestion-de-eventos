@@ -1,0 +1,64 @@
+1)
+crear bd "Eventos-db" con las tablas del DER
+2)
+Crear clases para cada una de las tablas del proyecto "SBGE" (sistema basico de gestion de eventos)  y dentro de la capeta "modelo"
+@/SGBE
+MODELO
+
+filtos
+
+campos
+
+private $Nombre;
+private $Apellidos;
+private $Biografia; /lorem
+private $Telefono; /rand(1,11) (caracteristica, numero)
+private $Url; 
+private $Email;
+private $Twitter;
+private $Linkedin;
+
+
+//generador de emails
+
+posicion [0] del nombre y Apellidos. concatenado al "@" y correo
+
+//TELEFONO 
+LA CARACTERISTICA DEBE IR DE ENTRE [200,3499] Y LA CANTIDAD DE NUMEROS DEBE SER 10 SIEMPREEEEE
+CONCATENAR LA CARACTERISTICA CON EL NUMERO
+
+Url
+https://
+
+encapsulacion;
+los valores publicos son incorrectos
+la encapsulacion permite qie los datos conserven un estado valido y consistente y evita que cualquier codigo 
+genere codigo indeseado
+definicion;
+se denomina encapsulacion porque los datos y sus estrucutas de datos no estan accesibles de forma directa
+sino que para acceder a los datos o manipularlos se ha de realizar a traves de las funciones asosiadas, los datos estan reservados a los que estan destinados a observar;
+encapsulados
+
+La clase son la definicion de los objetos en tiempo de compilacion y las instancias son la creacion en tiempo
+de ejecucion de una clase.
+
+
+//FECHA DE ENTREGA DEL PRACTICO PROXIMAMENTE CON RESPECTO AL USUARIO:
+FECHA PROXIMAMENTE
+stand by telefono
+
+para despues 
+DELETE FROM usuarios
+WHERE id IN (1, 2, 3, 4); esto para multiples borrados
+
+PARA CARGAR CONTENIDO USAR LA FUNCION ONREADY
+Y CUANDO HACE EL ELIMINAR TAMB USAR EL ONREADY
+
+
+RECIBIR LOS VALORES 
+
+page = cantidad de paginas
+valor = perpage el numero de la pagina
+
+git;
+BD SE INGORA;

@@ -1,0 +1,97 @@
+/* Variables CSS para ajuste responsive */
+:root {
+    --side-section-width: 30%; /* Ancho de la sección lateral (derecha) */
+    --left-section-width: 60%; /* Ancho de la sección izquierda */
+  }
+  
+  /* Estilos para la sección lateral (derecha) */
+  .side-section {
+    float: right;
+    width: var(--side-section-width);
+    background-color: #3498db; /* Azul */
+    color: #ffffff; /* Blanco */
+    padding: 20px;
+    margin-left: 20px;
+  }
+  
+  .side-section h1 {
+    color: #ffffff; /* Blanco */
+  }
+  
+  .side-section a {
+    color: #ffffff; /* Blanco */
+    text-decoration: none;
+  }
+  
+  .side-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .side-section button {
+    background-color: #2c3e50; /* Azul oscuro */
+    color: #ffffff; /* Blanco */
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
+  
+  .side-section button:hover {
+    background-color: #1abc9c; /* Verde turquesa */
+  }
+  
+  /* Estilos para la sección izquierda */
+  .left-section {
+    float: left;
+    width: var(--left-section-width);
+    background-color: #ffffff; /* Blanco */
+    color: #333333; /* Gris oscuro */
+    padding: 20px;
+    margin-right: 20px;
+    border: 1px solid #cccccc; /* Gris claro */
+  }
+  
+  .left-section h1 {
+    color: #333333; /* Gris oscuro */
+  }
+  
+  .left-section a {
+    color: #3498db; /* Azul */
+    text-decoration: none;
+  }
+  
+  .left-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .left-section button {
+    background-color: #2c3e50; /* Azul oscuro */
+    color: #ffffff; /* Blanco */
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
+  
+  .left-section button:hover {
+    background-color: #1abc9c; /* Verde turquesa */
+  }
+  
+  /* Estilos para la navegación de paginación */
+  .pagination {
+    margin-top: 20px;
+  }
+  
+  .pagination-list {
+    list-style: none;
+  }
+  
+  .pagination-link {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #333333; /* Gris oscuro */
+    text-decoration: none;
+  }
+  
+  .pagination-link:hover {
+    background-color: #f2f2f2; /* Gris claro */
+  }
+  
